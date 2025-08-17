@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liba Bank Dashboard</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class=" ms-8 my-8 w-[80px] h-[80vh] bg-green-200  text-gray-600 flex flex-col items-center text-center px-4 py-6 space-y-6">
+   <a href="index.html"><i class="ri-home-4-line size-16"></i></a>
+    
+    <i class="ri-line-chart-line size-16"></i>
+    <a href="notification.html"><i class="ri-notification-3-line size-16"></i></a>
+    <i class="ri-id-card-line size-16"></i>
+    <a href="settings.html">
+    <i class="ri-settings-2-line size-16"></i>
+    </a>
+    
+    
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6">
+    <!-- Header -->
+     <header>
+ <div class="flex justify-between mb-6">
+        <h1 class="text-xl font-bold text-gray-700">Your Dashboard</h1>
+        <img src="OIP.webp" alt="User" class="rounded-full w-14 h-14" />
+    </div>
+     </header>
+    
+   
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
+        <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
+        <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow text-center">
+        <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
+        <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
+      </div>
+    </div>
+
+    <!-- Transaction Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <!-- Deposit -->
+      <div class="bg-white p-4 rounded shadow">
+        <h4 class="text-lg font-semibold mb-2">Deposit Amount</h4>
+        <input type="number" id="depositInput" class="w-full border px-4 py-2 rounded mb-2" placeholder="Enter amount" />
+        <button onclick="handleDeposit()" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Deposit</button>
+      </div>
+
+      <!-- Withdraw -->
+      <div class="bg-white p-4 rounded shadow">
+        <h4 class="text-lg font-semibold mb-2">Withdraw Amount</h4>
+        <input type="number" id="withdrawInput" class="w-full border px-4 py-2 rounded mb-2" placeholder="Enter amount" />
+        <button onclick="handleWithdraw()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Withdraw</button>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="bg-white p-6 rounded shadow">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-lg font-semibold">DIPOSIT</h4>
+        <span class="text-pink-500 font-bold">Subscribe Now!</span>
+      </div>
+      <canvas id="depositChart" class="w-full h-64"></canvas> <!-- 📊 Chart goes here -->
+    </div>
+  </main>
+
+  <!-- Font Awesome for icons -->
+  <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+
+  <!-- JavaScript Logic -->
+  <script src="dashboard.js"></script>
+</body>
+</html>
