@@ -27,6 +27,18 @@
       }
     }
 
+    //redirect page
+        function loadPage(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("content").innerHTML = data;
+        })
+        .catch(error => {
+          document.getElementById("content").innerHTML = "<p class='text-red-500'>Error loading page.</p>";
+        });
+    }
+
     // 📊 Chart.js setup
     const ctx = document.getElementById('depositChart').getContext('2d');
     const depositChart = new Chart(ctx, {

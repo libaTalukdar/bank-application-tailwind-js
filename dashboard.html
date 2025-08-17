@@ -15,8 +15,8 @@
 <body class="bg-gray-100 min-h-screen flex">
 
   <!-- Sidebar -->
-  <aside class=" ms-8 my-8 w-[80px] h-[80vh] bg-green-200  text-gray-600 flex flex-col items-center text-center px-4 py-6 space-y-6">
-   <a href="index.html"><i class="ri-home-4-line size-16"></i></a>
+  <aside class="   w-[80px] fixed top-0 left-0 h-[100vh] bg-green-200  text-gray-600 flex flex-col items-center text-center px-4 py-12 space-y-6">
+   <!-- <a href="index.html"><i class="ri-home-4-line size-16"></i></a>
     
     <i class="ri-line-chart-line size-16"></i>
     <a href="notification.html"><i class="ri-notification-3-line size-16"></i></a>
@@ -24,22 +24,30 @@
     <a href="settings.html">
     <i class="ri-settings-2-line size-16"></i>
     </a>
-    
-    
+     -->
+    <!-- <button onclick="loadPage('index.html', this)"><i class="ri-home-4-line text-2xl"></i></button> -->
+     <a href="index.html"><i class="ri-home-4-line text-2xl"></i></a>
+    <!-- <button onclick="loadPage('index.html', this)"><i class="ri-home-4-line text-2xl"></i></button> -->
+    <button onclick="loadPage('chart.html', this)"><i class="ri-line-chart-line text-2xl"></i></button>
+    <button onclick="loadPage('notification.html', this)"><i class="ri-notification-3-line text-2xl"></i></button>
+    <button onclick="loadPage('profile.html', this)"><i class="ri-id-card-line text-2xl"></i></button>
+    <button onclick="loadPage('settings.html', this)"><i class="ri-settings-2-line text-2xl"></i></button>
+    <a href="index.html"> <span class="w-12 h-8 px-4 py-2 rounded-full  items-center bg-yellow-200 text-red-800 text-bold">LT</span></a>
+     
   </aside>
-
+  
   <!-- Main Content -->
-  <main class="flex-1 p-6">
+  <div class="flex-1 p-6">
     <!-- Header -->
-     <header>
- <div class="flex justify-between mb-6">
-        <h1 class="text-xl font-bold text-gray-700">Your Dashboard</h1>
+     <header class="fixed top-0 left-[80px] flex w-full py-6 bg-blue-500 justify-around ">
+     <h1 class="text-xl font-bold text-gray-700">Your Dashboard</h1>
         <img src="OIP.webp" alt="User" class="rounded-full w-14 h-14" />
-    </div>
      </header>
     
-   
+   <main id="content" class="  px-16 py-12 mt-[50px]">
 
+   
+   
     <!-- Summary Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <div class="bg-white p-4 rounded shadow text-center">
@@ -81,7 +89,8 @@
       </div>
       <canvas id="depositChart" class="w-full h-64"></canvas> <!-- 📊 Chart goes here -->
     </div>
-  </main>
+    </main>
+  </div>
 
   <!-- Font Awesome for icons -->
   <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
