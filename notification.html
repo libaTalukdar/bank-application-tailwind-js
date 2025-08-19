@@ -3,9 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Notifications | NeoBank</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <body>
-    <h1>Notification page</h1>
+   
+    <!-- Notifications Page Content -->
+    
+        <div class="container mx-auto max-w-4xl">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Notifications</h1>
+                <div class="flex space-x-2">
+                    <button id="markAllRead" class="text-blue-600 hover:text-blue-800 font-medium">
+                        <i class="fas fa-check-double mr-1"></i> Mark All Read
+                    </button>
+                    <button id="clearAll" class="text-red-600 hover:text-red-800 font-medium">
+                        <i class="fas fa-trash-alt mr-1"></i> Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notification Filters -->
+            <div class="bg-white rounded-lg shadow p-4 mb-6">
+                <div class="flex flex-wrap gap-4">
+                    <button class="notification-filter active px-4 py-2 rounded-full bg-blue-100 text-blue-800">
+                        All Notifications
+                    </button>
+                    <button class="notification-filter px-4 py-2 rounded-full bg-gray-100 text-gray-800">
+                        <i class="fas fa-dollar-sign mr-2"></i>Transactions
+                    </button>
+                    <button class="notification-filter px-4 py-2 rounded-full bg-gray-100 text-gray-800">
+                        <i class="fas fa-shield-alt mr-2"></i>Security
+                    </button>
+                    <button class="notification-filter px-4 py-2 rounded-full bg-gray-100 text-gray-800">
+                        <i class="fas fa-bullhorn mr-2"></i>Promotions
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div id="notificationsList" class="divide-y divide-gray-200">
+                    <!-- Notifications will be dynamically inserted here -->
+                    <div class="text-center py-10 text-gray-500" id="emptyNotifications">
+                        <i class="fas fa-bell-slash text-4xl mb-3"></i>
+                        <p>No notifications yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+
+    <!-- Shared JavaScript -->
+    <script src="bank-app.js"></script>
+    
+    <!-- Notifications-specific JavaScript -->
+    <script>
+        // Notification data structure
+        const notificationTypes = {
+            transaction: {
+                icon: 'fa-exchange-alt',
+                color: 'text-blue-500',
+                bg: 'bg-blue-50'
+            },
+            security: {
+                icon: 'fa-shield-alt',
+                color: 'text-green-500',
+                bg: 'bg-green-50'
+            },
+            promotion: {
+                icon: 'fa-bullhorn',
+                color: 'text-purple-500',
+                bg: 'bg-purple-50'
+            },
+            system: {
+                icon: 'fa-cog',
+                color: 'text-gray-500',
+                bg: 'bg-gray-50'
+            }
+        };
+
+        // Sample notifications (in a real app, these would come from your backend)
+        const sampleNotifications = [
+            {
+                id: 1,
+                type: 'transaction',
+                title: 'Deposit Received',
+                message: 'Your deposit of $500.00 has been processed',
+                time: '2 minutes ago',
+                read: false,
+                date: new Date()
+            },
+            {
+                id: 2,
+                type: 'security',
+                title: 'Security Alert',
+                message: 'New login detected from Chrome on Windows',
+                time: '1 hour ago',
+                read: false,
+                date: new Date(Date.now() - 3600000)
+            },
+            {
+                id: 3,
+                type: 'promotion',
+                title: 'Special Offer',
+                message: 'Earn 3% extra interest this month!',
+                time: '5 hours ago',
+                read: true,
+                date: new Date(Date.now() - 18000000)
+            },
+            {
+                id: 4,
+                type: 'system',
+                title: 'System Maintenance',
+                message: 'Scheduled maintenance tonight at 2:00 AM',
+                time: 'Yesterday',
+                read: true,
+                date: new Date(Date.now() - 86400000)
+            }
+        ];
+
+        // Load notifications from localStorage or use sample data
+        function loadNotifications() {
+            let notifications = JSON.parse(localStorage.getItem('notifications')) || sampleNotifications;
+            return notifications.sort((a, b) => b.date - a.date);
+        }
+
+        // Save notifications to localStorage
+        function saveNotifications(notifications) {
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+        }
+
+        // Render notifications
+        function renderNotifications(filter = 'all') {
+            const notifications = loadNotifications();
+            const filteredNotifications = filter === 'all' 
+                ? notifications 
+                : notifications.filter(n => n.type === filter);
+            
+            const container = document.getElementById('notificationsList');
+            const emptyMessage = document.getElementById('emptyNotifications');
+            
+            if (filteredNotifications.length === 0) {
+                container.innerHTML = '';
+                emptyMessage.classList.remove('hidden');
+                return;
+            }
+            
+            emptyMessage.classList.add('hidden');
+            container.innerHTML = '';
+            
+            filteredNotifications.forEach(notification => {
+                const type = notificationTypes[notification.type] || notificationTypes.system;
+                const notificationElement = document.createElement('div');
+                notificationElement.className = `p-4 hover:bg-gray-50 transition ${notification.read ? '' : 'bg-blue-50'}`;
+                notificationElement.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="${type.bg} p-3 rounded-full mr-4">
+                            <i class="fas ${type.icon} ${type.color}"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-medium ${notification.read ? 'text-gray-700' : 'text-black font-semibold'}">
+                                    ${notification.title}
+                                </h3>
+                                <span class="text-xs text-gray-500">${notification.time}</span>
+                            </div>
+                            <p class="text-gray-600 mt-1">${notification.message}</p>
+                            <div class="mt-2 flex space-x-3">
+                                <button class="text-xs text-blue-600 hover:text-blue-800 mark-as-read" data-id="${notification.id}">
+                                    ${notification.read ? 'Mark Unread' : 'Mark Read'}
+                                </button>
+                                <button class="text-xs text-red-600 hover:text-red-800 delete-notification" data-id="${notification.id}">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(notificationElement);
+            });
+            
+            // Add event listeners to new buttons
+            document.querySelectorAll('.mark-as-read').forEach(button => {
+                button.addEventListener('click', function() {
+                    toggleReadStatus(this.dataset.id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-notification').forEach(button => {
+                button.addEventListener('click', function() {
+                    deleteNotification(this.dataset.id);
+                });
+            });
+        }
+
+        // Toggle read/unread status
+        function toggleReadStatus(id) {
+            const notifications = loadNotifications();
+            const updated = notifications.map(n => {
+                if (n.id == id) {
+                    return { ...n, read: !n.read };
+                }
+                return n;
+            });
+            saveNotifications(updated);
+            renderNotifications(document.querySelector('.notification-filter.active').textContent.trim().toLowerCase().includes('all') ? 'all' : 
+                              notifications.find(n => n.id == id).type);
+        }
+
+        // Delete a notification
+        function deleteNotification(id) {
+            const notifications = loadNotifications().filter(n => n.id != id);
+            saveNotifications(notifications);
+            renderNotifications(document.querySelector('.notification-filter.active').textContent.trim().toLowerCase().includes('all') ? 'all' : 
+                              notifications.find(n => n.id == id)?.type || 'all');
+        }
+
+        // Mark all as read
+        function markAllAsRead() {
+            const notifications = loadNotifications().map(n => ({ ...n, read: true }));
+            saveNotifications(notifications);
+            renderNotifications(document.querySelector('.notification-filter.active').textContent.trim().toLowerCase().includes('all') ? 'all' : 
+                              document.querySelector('.notification-filter.active').textContent.trim().toLowerCase());
+        }
+
+        // Clear all notifications
+        function clearAllNotifications() {
+            if (confirm('Are you sure you want to clear all notifications?')) {
+                saveNotifications([]);
+                renderNotifications();
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load and render notifications
+            renderNotifications();
+            
+            // Update header balance
+            function updateHeaderBalance() {
+                const state = JSON.parse(localStorage.getItem('bankData')) || { balance: 0 };
+                document.getElementById('headerBalance').textContent = `$${state.balance.toFixed(2)}`;
+            }
+            updateHeaderBalance();
+            setInterval(updateHeaderBalance, 2000);
+            
+            // Set up filter buttons
+            document.querySelectorAll('.notification-filter').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.notification-filter').forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-100', 'text-blue-800');
+                        btn.classList.add('bg-gray-100', 'text-gray-800');
+                    });
+                    this.classList.add('active', 'bg-blue-100', 'text-blue-800');
+                    this.classList.remove('bg-gray-100', 'text-gray-800');
+                    
+                    const filterType = this.textContent.trim().toLowerCase();
+                    if (filterType.includes('all')) {
+                        renderNotifications('all');
+                    } else if (filterType.includes('transaction')) {
+                        renderNotifications('transaction');
+                    } else if (filterType.includes('security')) {
+                        renderNotifications('security');
+                    } else if (filterType.includes('promotion')) {
+                        renderNotifications('promotion');
+                    }
+                });
+            });
+            
+            // Set up action buttons
+            document.getElementById('markAllRead').addEventListener('click', markAllAsRead);
+            document.getElementById('clearAll').addEventListener('click', clearAllNotifications);
+            
+            // Simulate new notifications periodically (demo only)
+            setInterval(() => {
+                const notifications = loadNotifications();
+                if (notifications.length < 10) { // Prevent too many demo notifications
+                    const newNotification = {
+                        id: Date.now(),
+                        type: ['transaction', 'security', 'promotion', 'system'][Math.floor(Math.random() * 4)],
+                        title: ['Payment Processed', 'Security Alert', 'New Offer', 'System Update'][Math.floor(Math.random() * 4)],
+                        message: 'This is a simulated notification for demo purposes',
+                        time: 'Just now',
+                        read: false,
+                        date: new Date()
+                    };
+                    notifications.unshift(newNotification);
+                    saveNotifications(notifications);
+                    renderNotifications(document.querySelector('.notification-filter.active').textContent.trim().toLowerCase().includes('all') ? 'all' : 
+                                      document.querySelector('.notification-filter.active').textContent.trim().toLowerCase());
+                    
+                    // Show toast notification
+                    const toast = document.createElement('div');
+                    toast.className = 'fixed top-20 right-4 bg-blue-600 text-white px-4 py-2 rounded shadow-lg animate-fade-in';
+                    toast.innerHTML = `<i class="fas fa-bell mr-2"></i> ${newNotification.title}`;
+                    document.body.appendChild(toast);
+                    setTimeout(() => {
+                        toast.classList.add('animate-fade-out');
+                        setTimeout(() => toast.remove(), 500);
+                    }, 3000);
+                }
+            }, 15000); // Every 15 seconds for demo
+        });
+    </script>
+
+    <style>
+        /* Animation styles */
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .animate-fade-out {
+            animation: fadeOut 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(10px); }
+        }
+    </style>
 </body>
 </html>

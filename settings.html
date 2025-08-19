@@ -3,89 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Account Settings | NeoBank</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p>welcome settings</p>
+   
+   
 
-    <!-- Summary Cards -->
-     <div>
-      <!-- <div  class="grid grid-cols-12 gap-4 mb-6">
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4 bg-white p-4 rounded shadow text-center">
-    <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
-        <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
-      </div>
-  </div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-4 bg-white p-4 rounded shadow text-center">
-    <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
-        <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
-      </div>
-  </div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-4 bg-white p-4 rounded shadow text-center">
-   <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
-        <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
-      </div>
-  </div>
-      </div> -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
-        <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
-      </div>
-      <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
-        <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
-      </div>
-      <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
-        <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
-      </div>
-    </div>
-    <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
-    <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
-  </div>
+    <!-- Settings Page Content -->
+    <main class="ml-16 mt-16 p-6">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-2xl font-bold mb-6">Account Settings</h1>
+            
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <!-- Security Settings -->
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-shield-alt mr-2 text-blue-500"></i>
+                        Security Settings
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">Password</h3>
+                                <p class="text-sm text-gray-500">Last changed 3 months ago</p>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 font-medium">
+                                Change Password
+                            </button>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">Two-Factor Authentication</h3>
+                                <p class="text-sm text-gray-500">Add an extra layer of security</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notification Preferences -->
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-bell mr-2 text-blue-500"></i>
+                        Notification Preferences
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">Email Notifications</h3>
+                                <p class="text-sm text-gray-500">Receive account updates via email</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">SMS Alerts</h3>
+                                <p class="text-sm text-gray-500">Get transaction alerts via SMS</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Account Information -->
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                        Account Information
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">Current Balance</h3>
+                                <p class="text-sm text-gray-500">Shows in all pages</p>
+                            </div>
+                            <p class="text-lg font-bold text-blue-600" id="settingsBalance">$0.00</p>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">Account Type</h3>
+                                <p class="text-sm text-gray-500">Premium Savings Account</p>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 font-medium">
+                                Upgrade
+                            </button>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <h3 class="font-medium">Close Account</h3>
+                                <p class="text-sm text-gray-500">Permanently delete your account</p>
+                            </div>
+                            <button class="text-red-600 hover:text-red-800 font-medium">
+                                Request Closure
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
-    <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
-  </div>
+    <!-- Shared JavaScript -->
+    <script src="bank-app.js"></script>
+    
+    <!-- Settings-specific JavaScript -->
+    <script>
+        // Update settings page with current data
+        function updateSettings() {
+            const state = JSON.parse(localStorage.getItem('bankData')) || {
+                balance: 0,
+                deposits: 0,
+                withdrawals: 0,
+                transactions: []
+            };
+            
+            document.getElementById('settingsBalance').textContent = `$${state.balance.toFixed(2)}`;
+            document.getElementById('headerBalance').textContent = `$${state.balance.toFixed(2)}`;
+        }
 
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
-    <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
-  </div>
-</div> -->
-
-
-    <!-- Transaction Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <!-- Deposit -->
-      <div class="bg-white p-4 rounded shadow">
-        <h4 class="text-lg font-semibold mb-2">Deposit Amount</h4>
-        <input type="number" id="depositInput" class="w-full border px-4 py-2 rounded mb-2" placeholder="Enter amount" />
-        <button onclick="handleDeposit()" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Deposit</button>
-      </div>
-
-      <!-- Withdraw -->
-      <div class="bg-white p-4 rounded shadow">
-        <h4 class="text-lg font-semibold mb-2">Withdraw Amount</h4>
-        <input type="number" id="withdrawInput" class="w-full border px-4 py-2 rounded mb-2" placeholder="Enter amount" />
-        <button onclick="handleWithdraw()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Withdraw</button>
-      </div>
-    </div>
-
-    <!-- Chart Section -->
-    <div class="bg-white p-6 rounded shadow">
-      <div class="flex justify-between items-center mb-4">
-        <h4 class="text-lg font-semibold">DIPOSIT</h4>
-        <span class="text-pink-500 font-bold">Subscribe Now!</span>
-      </div>
-      <canvas id="depositChart" class="w-full h-64"></canvas> <!-- 📊 Chart goes here -->
-    </div>
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSettings();
+            // Update every 2 seconds to stay in sync
+            setInterval(updateSettings, 2000);
+            
+            // Add toggle switch functionality
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const label = this.nextElementSibling;
+                    if (this.checked) {
+                        label.classList.add('bg-blue-600');
+                        label.classList.remove('bg-gray-200');
+                    } else {
+                        label.classList.add('bg-gray-200');
+                        label.classList.remove('bg-blue-600');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

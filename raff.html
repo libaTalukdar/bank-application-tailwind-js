@@ -1,83 +1,376 @@
- <main id="content" class="  px-16 py-12 mt-[50px]">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        
 
-   
-   
-    <!-- Summary Cards -->
-     <div>
-      <!-- <div  class="grid grid-cols-12 gap-4 mb-6">
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4 bg-white p-4 rounded shadow text-center">
-    <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
-        <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
-      </div>
-  </div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-4 bg-white p-4 rounded shadow text-center">
-    <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
-        <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
-      </div>
-  </div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-4 bg-white p-4 rounded shadow text-center">
-   <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
-        <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
-      </div>
-  </div>
-      </div> -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
-        <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
-      </div>
-      <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
-        <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
-      </div>
-      <div class="bg-white p-4 rounded shadow text-center">
-        <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
-        <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
-      </div>
+        <!-- Balance Card -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-2">Total Balance</h2>
+            <p class="text-4xl font-bold text-blue-600 mb-4" id="totalBalance">$<span id="totalBalance">0</span></p>
+            
+            <!-- Bonus Banner -->
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded">
+                <div class="flex items-center">
+                    <span class="font-bold mr-2">NEW</span>
+                    <span>You got $500 bonus</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Recent Transactions</h2>
+            
+            <div class="space-y-4">
+                <!-- Transaction Items -->
+                <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-dollar-sign text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Deposit</p>
+                            <p class="text-sm text-gray-500">Your $100 Deposit successfully</p>
+                        </div>
+                    </div>
+                    <span class="text-green-600 font-medium">Success</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="bg-red-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-arrow-up text-red-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Withdraw</p>
+                            <p class="text-sm text-gray-500">Your $220 Withdraw request</p>
+                        </div>
+                    </div>
+                    <span class="text-red-600 font-medium">Failed</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-exchange-alt text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Transition</p>
+                            <p class="text-sm text-gray-500">Your $554 Transition</p>
+                        </div>
+                    </div>
+                    <span class="text-green-600 font-medium">Success</span>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-arrow-up text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Withdraw</p>
+                            <p class="text-sm text-gray-500">Your $21 Withdraw request</p>
+                        </div>
+                    </div>
+                    <span class="text-green-600 font-medium">Success</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning Alert -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                <span class="font-medium">Balance Warning</span>
+            </div>
+            <p class="mt-1">Your total balance is low. Please deposit your money</p>
+        </div>
     </div>
-    <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h3 class="text-lg font-semibold text-gray-700">Total Deposit</h3>
-    <p id="totalDeposit" class="text-2xl font-bold text-green-600">$600</p>
-  </div>
 
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h3 class="text-lg font-semibold text-gray-700">Total Withdraw</h3>
-    <p id="totalWithdraw" class="text-2xl font-bold text-red-600">$200</p>
-  </div>
-
-  <div class="bg-white p-4 rounded shadow text-center">
-    <h3 class="text-lg font-semibold text-gray-700">Total Balance</h3>
-    <p id="totalBalance" class="text-2xl font-bold text-blue-600">$400</p>
-  </div>
-</div> -->
+    <!-- JavaScript for dynamic balance -->
+    <script>
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     // Simulate balance loading
+        //     setTimeout(() => {
+        //         document.getElementById('totalBalance').textContent = '1,234';
+        //     }, 800);
+        // });
+    </script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
 
 
-    <!-- Transaction Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <!-- Deposit -->
-      <div class="bg-white p-4 rounded shadow">
-        <h4 class="text-lg font-semibold mb-2">Deposit Amount</h4>
-        <input type="number" id="depositInput" class="w-full border px-4 py-2 rounded mb-2" placeholder="Enter amount" />
-        <button onclick="handleDeposit()" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Deposit</button>
-      </div>
 
-      <!-- Withdraw -->
-      <div class="bg-white p-4 rounded shadow">
-        <h4 class="text-lg font-semibold mb-2">Withdraw Amount</h4>
-        <input type="number" id="withdrawInput" class="w-full border px-4 py-2 rounded mb-2" placeholder="Enter amount" />
-        <button onclick="handleWithdraw()" class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Withdraw</button>
-      </div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Balance Card -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-2">Total Balance</h2>
+            <p class="text-4xl font-bold text-blue-600 mb-4">$<span id="totalBalance">0.00</span></p>
+            
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <p class="text-gray-600">Total Deposits</p>
+                    <p class="text-2xl font-bold text-green-600">$<span id="totalDeposit">0.00</span></p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <p class="text-gray-600">Total Withdrawals</p>
+                    <p class="text-2xl font-bold text-red-600">$<span id="totalWithdraw">0.00</span></p>
+                </div>
+            </div>
+            
+            <!-- Transaction Form -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Deposit Amount</label>
+                    <input type="number" id="depositAmount" class="w-full p-2 border rounded mb-2" placeholder="0.00">
+                    <button onclick="handleDeposit()" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded transition">
+                        Deposit
+                    </button>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Withdraw Amount</label>
+                    <input type="number" id="withdrawAmount" class="w-full p-2 border rounded mb-2" placeholder="0.00">
+                    <button onclick="handleWithdraw()" class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded transition">
+                        Withdraw
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Bonus Banner -->
+            <div id="bonusBanner" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded hidden">
+                <div class="flex items-center">
+                    <span class="font-bold mr-2">NEW</span>
+                    <span>You got $500 bonus</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Recent Transactions</h2>
+            <div id="transactionsContainer" class="space-y-4">
+                <!-- Transactions will be added here dynamically -->
+            </div>
+        </div>
+
+        <!-- Warning Alert -->
+        <div id="balanceWarning" class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg hidden">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                <span class="font-medium">Balance Warning</span>
+            </div>
+            <p class="mt-1">Your total balance is low. Please deposit your money</p>
+        </div>
     </div>
 
-    <!-- Chart Section -->
-    <div class="bg-white p-6 rounded shadow">
-      <div class="flex justify-between items-center mb-4">
-        <h4 class="text-lg font-semibold">DIPOSIT</h4>
-        <span class="text-pink-500 font-bold">Subscribe Now!</span>
-      </div>
-      <canvas id="depositChart" class="w-full h-64"></canvas> <!-- 📊 Chart goes here -->
-    </div>
+    <script>
+        // Initialize state
+        const state = {
+            balance: 0,
+            totalDeposit: 0,
+            totalWithdraw: 0,
+            transactions: [],
+            bonusClaimed: false
+        };
+
+        // DOM Elements
+        const elements = {
+            balance: document.getElementById('totalBalance'),
+            totalDeposit: document.getElementById('totalDeposit'),
+            totalWithdraw: document.getElementById('totalWithdraw'),
+            transactionsContainer: document.getElementById('transactionsContainer'),
+            bonusBanner: document.getElementById('bonusBanner'),
+            balanceWarning: document.getElementById('balanceWarning'),
+            depositInput: document.getElementById('depositAmount'),
+            withdrawInput: document.getElementById('withdrawAmount')
+        };
+
+        // Load saved data from localStorage
+        function loadState() {
+            const savedState = localStorage.getItem('bankState');
+            if (savedState) {
+                Object.assign(state, JSON.parse(savedState));
+            }
+            updateUI();
+        }
+
+        // Save state to localStorage
+        function saveState() {
+            localStorage.setItem('bankState', JSON.stringify(state));
+        }
+
+        // Update UI with current state
+        function updateUI() {
+            // Update balance display
+            elements.balance.textContent = state.balance.toFixed(2);
+            elements.totalDeposit.textContent = state.totalDeposit.toFixed(2);
+            elements.totalWithdraw.textContent = state.totalWithdraw.toFixed(2);
+            
+            // Update transactions list
+            elements.transactionsContainer.innerHTML = '';
+            state.transactions.slice().reverse().forEach(transaction => {
+                const transactionEl = document.createElement('div');
+                transactionEl.className = `flex items-center justify-between p-3 ${getTransactionBgColor(transaction)} rounded-lg`;
+                
+                transactionEl.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="${getTransactionIconColor(transaction)} p-2 rounded-full mr-3">
+                            <i class="${getTransactionIcon(transaction)}"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">${transaction.type}</p>
+                            <p class="text-sm text-gray-500">${transaction.note || ''}</p>
+                        </div>
+                    </div>
+                    <span class="${transaction.success ? 'text-green-600' : 'text-red-600'} font-medium">
+                        $${transaction.amount.toFixed(2)} - ${transaction.success ? 'Success' : 'Failed'}
+                    </span>
+                `;
+                
+                elements.transactionsContainer.appendChild(transactionEl);
+            });
+            
+            // Show/hide bonus banner
+            elements.bonusBanner.classList.toggle('hidden', state.bonusClaimed);
+            
+            // Show warning if balance < 500
+            elements.balanceWarning.classList.toggle('hidden', state.balance >= 500);
+            
+            saveState();
+        }
+
+        // Helper functions for transaction styling
+        function getTransactionBgColor(transaction) {
+            if (!transaction.success) return 'bg-red-50';
+            return {
+                deposit: 'bg-blue-50',
+                withdraw: 'bg-green-50'
+            }[transaction.type] || 'bg-gray-50';
+        }
+
+        function getTransactionIconColor(transaction) {
+            if (!transaction.success) return 'bg-red-100 text-red-600';
+            return {
+                deposit: 'bg-blue-100 text-blue-600',
+                withdraw: 'bg-green-100 text-green-600'
+            }[transaction.type] || 'bg-gray-100 text-gray-600';
+        }
+
+        function getTransactionIcon(transaction) {
+            return {
+                deposit: 'fas fa-dollar-sign',
+                withdraw: 'fas fa-arrow-up'
+            }[transaction.type] || 'fas fa-question';
+        }
+
+        // Handle deposit
+        function handleDeposit() {
+            const amount = parseFloat(elements.depositInput.value);
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            state.balance += amount;
+            state.totalDeposit += amount;
+            
+            state.transactions.push({
+                type: 'deposit',
+                amount: amount,
+                note: `Deposit of $${amount.toFixed(2)}`,
+                success: true,
+                date: new Date().toISOString()
+            });
+            
+            elements.depositInput.value = '';
+            updateUI();
+            
+            // Check if bonus should be offered
+            if (!state.bonusClaimed && state.totalDeposit >= 1000) {
+                elements.bonusBanner.classList.remove('hidden');
+            }
+        }
+
+        // Handle withdraw
+        function handleWithdraw() {
+            const amount = parseFloat(elements.withdrawInput.value);
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (amount > state.balance) {
+                state.transactions.push({
+                    type: 'withdraw',
+                    amount: amount,
+                    note: `Attempted withdrawal of $${amount.toFixed(2)}`,
+                    success: false,
+                    date: new Date().toISOString()
+                });
+                alert('Insufficient funds for this withdrawal');
+            } else {
+                state.balance -= amount;
+                state.totalWithdraw += amount;
+                
+                state.transactions.push({
+                    type: 'withdraw',
+                    amount: amount,
+                    note: `Withdrawal of $${amount.toFixed(2)}`,
+                    success: true,
+                    date: new Date().toISOString()
+                });
+            }
+            
+            elements.withdrawInput.value = '';
+            updateUI();
+        }
+
+        // Claim bonus
+        elements.bonusBanner?.addEventListener('click', () => {
+            if (!state.bonusClaimed) {
+                const bonusAmount = 500;
+                state.balance += bonusAmount;
+                state.totalDeposit += bonusAmount;
+                state.bonusClaimed = true;
+                
+                state.transactions.push({
+                    type: 'deposit',
+                    amount: bonusAmount,
+                    note: 'Bonus claimed',
+                    success: true,
+                    date: new Date().toISOString()
+                });
+                
+                updateUI();
+                alert(`You've received a $${bonusAmount} bonus!`);
+            }
+        });
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', loadState);
+    </script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
