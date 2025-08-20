@@ -1,3 +1,18 @@
+//redirect page
+        function loadPage(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("content").innerHTML = data;
+        })
+        .catch(error => {
+          document.getElementById("content").innerHTML = "<p class='text-red-500'>Error loading page.</p>";
+        });
+    }
+
+
+
+
 // Shared state management
 class BankApp {
     static init() {
@@ -35,6 +50,11 @@ class BankApp {
             document.getElementById('totalBalance').textContent = `$${state.balance.toFixed(2)}`;
             document.getElementById('totalDeposit').textContent = `$${state.deposits.toFixed(2)}`;
             document.getElementById('totalWithdraw').textContent = `$${state.withdrawals.toFixed(2)}`;
+            // document.getElementById('profileTransactions').textContent = `$${state.transactions.length}`;
+
+        }
+        if (document.getElementById('profileTransactions')) {
+            document.getElementById('profileTransactions').textContent = `$${state.transactions.length}`;
         }
         
         if (document.getElementById('headerBalance')) {
@@ -104,7 +124,32 @@ class BankApp {
             alert('Insufficient funds!');
         }
     }
+    
+
+ static updateProfile() {
+    const state = this.getState();
+            // const state = JSON.parse(localStorage.getItem('bankData')) || {
+            //     balance: 0,
+            //     deposits: 0,
+            //     withdrawals: 0,
+            //     transactions: []
+            // };
+            // this.updateUI();
+            // document.getElementById('profileBalance').textContent = `$${state.balance.toFixed(2)}`;
+            // document.getElementById('profileDeposits').textContent = `$${state.deposits.toFixed(2)}`;
+            // document.getElementById('profileWithdrawals').textContent = `$${state.withdrawals.toFixed(2)}`;
+            document.getElementById('profileTransactions').textContent = state.transactions.length;
+            // document.getElementById('headerBalance').textContent = `$${state.balance.toFixed(2)}`;
+        }
+
+     
+       
+// end
+
 }
+
+ 
+
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', () => BankApp.init());
@@ -113,16 +158,5 @@ document.addEventListener('DOMContentLoaded', () => BankApp.init());
 function handleDeposit() { BankApp.handleDeposit(); }
 function handleWithdraw() { BankApp.handleWithdraw(); }
 
+  
 
-
-//redirect page
-        function loadPage(page) {
-      fetch(page)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("content").innerHTML = data;
-        })
-        .catch(error => {
-          document.getElementById("content").innerHTML = "<p class='text-red-500'>Error loading page.</p>";
-        });
-    }
