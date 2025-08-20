@@ -54,7 +54,7 @@ class BankApp {
 
         }
         if (document.getElementById('profileTransactions')) {
-            document.getElementById('profileTransactions').textContent = `$${state.transactions.length}`;
+            document.getElementById('profileTransactions').textContent = `${state.transactions.length}`;
         }
         
         if (document.getElementById('headerBalance')) {
@@ -126,21 +126,7 @@ class BankApp {
     }
     
 
- static updateProfile() {
-    const state = this.getState();
-            // const state = JSON.parse(localStorage.getItem('bankData')) || {
-            //     balance: 0,
-            //     deposits: 0,
-            //     withdrawals: 0,
-            //     transactions: []
-            // };
-            // this.updateUI();
-            // document.getElementById('profileBalance').textContent = `$${state.balance.toFixed(2)}`;
-            // document.getElementById('profileDeposits').textContent = `$${state.deposits.toFixed(2)}`;
-            // document.getElementById('profileWithdrawals').textContent = `$${state.withdrawals.toFixed(2)}`;
-            document.getElementById('profileTransactions').textContent = state.transactions.length;
-            // document.getElementById('headerBalance').textContent = `$${state.balance.toFixed(2)}`;
-        }
+
 
      
        
