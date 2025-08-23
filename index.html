@@ -10,26 +10,71 @@
 
   <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
     <h1 class="text-2xl font-bold text-center text-blue-700 mb-2">Welcome to <span class="w-12 h-8 px-4 py-2 rounded-full  items-center bg-yellow-200 text-red-800 text-bold">LT</span> Bank</h1>
-    <!-- <h2 class="text-xl font-semibold text-center text-gray-700 mb-6">LOGIN</h2> -->
 
-    <form id="loginForm" class="space-y-4">
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" id="email" class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Email is required</p>
-      </div>
-
-      <div >
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-        <input type="password" id="password" class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <p id="passwordError" class="text-red-500 text-sm mt-1 hidden">Password is required</p>
-      </div>
-      <a href="dashboard.html" class="flex justify-center mt-6 bg-blue-600 text-white px-6 py-4 rounded-md hover:bg-blue-700 transition">LOGIN </a>
-   <!-- <button type="submit" class="w-full mt-6 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">LOGIN</button> -->
    
-    </form>
+<form id="loginForm" class="space-y-4">
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+    <input type="email" id="email" class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Email is required</p>
+  </div>
+
+  <div>
+    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+    <input type="password" id="password" class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    <p id="passwordError" class="text-red-500 text-sm mt-1 hidden">Password is required</p>
+  </div>
+
+  <button type="submit" class="w-full mt-6 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">LOGIN</button>
+</form>
+
   </div>
 
   <script src="bank-app.js"></script>
+  <script>
+  const form = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    let valid = true;
+
+    // Reset error messages
+    emailError.classList.add('hidden');
+    passwordError.classList.add('hidden');
+
+    // Email validation
+    if (emailInput.value.trim() === '') {
+      emailError.textContent = 'Email is required';
+      emailError.classList.remove('hidden');
+      valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+      emailError.textContent = 'Please enter a valid email';
+      emailError.classList.remove('hidden');
+      valid = false;
+    }
+
+    // Password validation
+    if (passwordInput.value.trim() === '') {
+      passwordError.textContent = 'Password is required';
+      passwordError.classList.remove('hidden');
+      valid = false;
+    } else if (passwordInput.value.length < 6) {
+      passwordError.textContent = 'Password must be at least 6 characters';
+      passwordError.classList.remove('hidden');
+      valid = false;
+    }
+
+    // If all fields are valid, you can redirect or submit the form
+    if (valid) {
+      // Example: redirect to dashboard
+      window.location.href = 'dashboard.html';
+    }
+  });
+</script>
 </body>
 </html>
